@@ -1,0 +1,26 @@
+import sys
+def main():
+    CODES = [''.join(x.split()) for x in sys.stdin]
+    #print(CODES)
+    print(locate('FBFBBFFRLR',0,(0,127),6))
+    print(locate('RLR',0,(0,7),3))
+    
+    #for code in CODES:
+        #print(max(getID(getCol(getRow(code,code[0],0,(0,127))))))
+
+def locate(code,level,scope,end):
+    if level == end:
+        print(level)
+        return scope[0]
+    elif code[level] == 'F' or 'L':
+        return locate(code,level+1,(scope[0],int((scope[1] + scope[0]) / 2) + 1),end)
+    else:
+        return locate(code,level+1,(int((scope[1] + scope[0]) / 2), scope[1]),end) 
+
+def getID():
+    pass
+
+main()
+
+
+
